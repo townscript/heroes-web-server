@@ -1,14 +1,15 @@
 package com.townscript.hero.client.web;
 
+import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.Paragraph;
+import org.gwtbootstrap3.client.ui.PasswordTextBox;
+import org.gwtbootstrap3.client.ui.TextBox;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PasswordTextBox;
-import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 
 public class LoginPage extends Composite  implements HasText {
@@ -21,7 +22,7 @@ public class LoginPage extends Composite  implements HasText {
 
 	@UiField TextBox userName;
 	@UiField PasswordTextBox password;
-	@UiField Label signup;
+	@UiField Paragraph signup;
 	@UiField Button login;
 	
 	public LoginPage() {

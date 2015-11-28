@@ -32,3 +32,23 @@ h1 {
 #closeButton {
   margin: 15px 6px 6px;
 }
+
+.navbar-purple {
+	background-color: #683594;
+	font-size: 16px;
+	color: white;
+}
+
+.navbar > .container {
+	margin: 14px auto;
+}
+
+body{
+	background-color: #E6E6FA !important;
+}
+
+.login-box{
+	border: 1px solid #683594;
+	padding: 20px 40px 10px;
+	margin-top: 10%;
+}
