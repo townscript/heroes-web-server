@@ -16,7 +16,7 @@
 	</g:FlowPanel>
 	<g:FlowPanel>
 		<g:Button ui:field="login" text="Sign in"></g:Button>
-		<g:Label ui:field="signup" text="Click here to Register"></g:Label>
+		<g:Label ui:field="signup" styleName="clickstyle" text="Click here to Register"></g:Label>
 	</g:FlowPanel>
 </g:HTMLPanel>
 </ui:UiBinder> 
