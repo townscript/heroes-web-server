@@ -10,6 +10,7 @@ h1 {
   text-align: center;
 }
 
+
 .sendButton {
   display: block;
   font-size: 16pt;
@@ -51,4 +52,13 @@ body{
 	border: 1px solid #683594;
 	padding: 20px 40px 10px;
 	margin-top: 10%;
+}
+.labelStyle{
+	
+}
+
+.clickstyle{
+	cursor: pointer;
+	color: blue;
+	text-decoration: underline;
 }

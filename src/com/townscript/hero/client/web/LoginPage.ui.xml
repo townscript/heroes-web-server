@@ -27,7 +27,7 @@
 						<b:Button type="PRIMARY" ui:field="login" text="Log In"></b:Button>
 					</b:Div>
 					<b:Div styleName="text-center">
-						<b:Paragraph styleName="text-primary" ui:field="signup"
+						<b:Paragraph styleName="text-primary clickstyle" ui:field="signup"
 							text="Click here to Register"></b:Paragraph>
 					</b:Div>
 

@@ -2,11 +2,25 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
-		
+		.onclickstyle{
+	
+	
+		}
 	</ui:style>
 	<g:HTMLPanel>
 	<g:FlowPanel>
-		<g:Label text=""></g:Label>
+		<g:Label text="First Name"></g:Label>
+		<g:TextBox ui:field="firstname"></g:TextBox>
+		<g:Label text="Last Name"></g:Label>
+		<g:TextBox ui:field="lastname"></g:TextBox>
+		<g:Label text="Email Id"></g:Label>
+		<g:TextBox ui:field="email"></g:TextBox>
+		<g:Label text="Password"></g:Label>
+		<g:PasswordTextBox ui:field="password"></g:PasswordTextBox>
+	</g:FlowPanel>
+	<g:FlowPanel>
+		<g:Label ui:field="signup" text="Submit"></g:Label>
+		<g:Label ui:field="login" styleName="clickstyle" text="Already user?Click here to login"></g:Label>
 	</g:FlowPanel>
 	</g:HTMLPanel>
 </ui:UiBinder> 

@@ -4,6 +4,7 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.townscript.hero.client.web.LoginPage;
+import com.townscript.hero.client.web.RegisterPage;
 
 public class DashboardMerchantHistoryListener implements ValueChangeHandler<String>{
 
@@ -15,9 +16,15 @@ public class DashboardMerchantHistoryListener implements ValueChangeHandler<Stri
 			RootPanel.get("maincontainer").add(LoginPage.getInstance());
 
 		}
+		if(event.getValue().startsWith("signup")){
+
+			RootPanel.get("maincontainer").clear();
+			RootPanel.get("maincontainer").add(RegisterPage.getInstance());
+
+		}
 		
 		if(!event.getValue().contains("dashboard") && 
-				!event.getValue().contains("profile")){
+				!event.getValue().contains("signup")){
 
 			RootPanel.get("maincontainer").clear();
 			RootPanel.get("maincontainer").add(LoginPage.getInstance());
