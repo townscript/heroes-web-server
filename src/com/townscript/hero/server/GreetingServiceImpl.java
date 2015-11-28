@@ -1,8 +1,8 @@
-package com.townscript.heroes.server;
+package com.townscript.hero.server;
 
-import com.townscript.heroes.client.service.GreetingService;
-import com.townscript.heroes.shared.FieldVerifier;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.townscript.hero.client.service.GreetingService;
+import com.townscript.hero.shared.FieldVerifier;
 
 /**
  * The server side implementation of the RPC service.

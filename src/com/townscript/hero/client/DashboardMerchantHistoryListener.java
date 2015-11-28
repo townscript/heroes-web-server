@@ -1,12 +1,11 @@
-package com.townscript.heroes.client;
-
+package com.townscript.hero.client;
 
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.townscript.heroes.client.web.LoginPage;
+import com.townscript.hero.client.web.LoginPage;
 
-public class HeroesGwtHistoryListener  implements ValueChangeHandler<String> {
+public class DashboardMerchantHistoryListener implements ValueChangeHandler<String>{
 
 	@Override
 	public void onValueChange(ValueChangeEvent<String> event) {

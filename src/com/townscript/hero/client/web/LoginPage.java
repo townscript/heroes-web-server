@@ -1,4 +1,4 @@
-package com.townscript.heroes.client.web;
+package com.townscript.hero.client.web;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;

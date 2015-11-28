@@ -1,4 +1,4 @@
-package com.townscript.heroes.client.service;
+package com.townscript.hero.client.service;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;

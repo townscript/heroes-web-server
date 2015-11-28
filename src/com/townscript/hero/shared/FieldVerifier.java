@@ -1,4 +1,4 @@
-package com.townscript.heroes.shared;
+package com.townscript.hero.shared;
 
 /**
  * <p>

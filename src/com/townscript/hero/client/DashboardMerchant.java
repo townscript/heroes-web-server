@@ -1,18 +1,17 @@
-package com.townscript.heroes.client;
+package com.townscript.hero.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.townscript.heroes.client.web.LoginPage;
+import com.townscript.hero.client.web.LoginPage;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class Heroesgwt implements EntryPoint {
-
+public class DashboardMerchant implements EntryPoint {
+	
 	/**
 	 * This is the entry point method.
 	 */
@@ -23,7 +22,7 @@ public class Heroesgwt implements EntryPoint {
 			public void onSuccess() {
 				String initToken = History.getToken();
 
-				History.addValueChangeHandler(new HeroesGwtHistoryListener());
+				History.addValueChangeHandler(new DashboardMerchantHistoryListener());
 
 				if (initToken.length() == 0) {
 					RootPanel.get("maincontainer").clear();
@@ -37,7 +36,8 @@ public class Heroesgwt implements EntryPoint {
 			
 			@Override
 			public void onFailure(Throwable reason) {
-				Window.Location.reload();
+				// TODO Auto-generated method stub
+				
 			}
 		});
 	}
