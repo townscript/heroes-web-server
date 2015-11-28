@@ -25,9 +25,7 @@ public class DashboardMerchant implements EntryPoint {
 				History.addValueChangeHandler(new DashboardMerchantHistoryListener());
 
 				if (initToken.length() == 0) {
-					RootPanel.get("maincontainer").clear();
-					RootPanel.get("maincontainer").add(LoginPage.getInstance());
-
+					History.newItem("login", true);
 
 				} else {
 					History.fireCurrentHistoryState();

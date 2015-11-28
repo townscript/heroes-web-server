@@ -10,7 +10,7 @@
 
 		<b:Row>
 			<b:Column size="MD_4" offset="MD_4">
-				<b:Div styleName="login-box">
+				<b:Div styleName="user-box">
 
 					<b:InputGroup styleName="form-group input-group">
 						<b:InputGroupAddon icon="USER"></b:InputGroupAddon>
@@ -27,8 +27,8 @@
 						<b:Button type="PRIMARY" ui:field="login" text="Log In"></b:Button>
 					</b:Div>
 					<b:Div styleName="text-center">
-						<b:Paragraph styleName="text-primary clickstyle" ui:field="signup"
-							text="Click here to Register"></b:Paragraph>
+						<b:Anchor styleName="text-primary" href="#signup"
+							text="Click here to Register"></b:Anchor>
 					</b:Div>
 
 				</b:Div>

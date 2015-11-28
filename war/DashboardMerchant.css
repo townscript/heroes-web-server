@@ -48,17 +48,8 @@ body{
 	background-color: #E6E6FA !important;
 }
 
-.login-box{
+.user-box{
 	border: 1px solid #683594;
 	padding: 20px 40px 10px;
 	margin-top: 10%;
-}
-.labelStyle{
-	
-}
-
-.clickstyle{
-	cursor: pointer;
-	color: blue;
-	text-decoration: underline;
 }
