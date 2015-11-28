@@ -2,6 +2,7 @@ package com.townscript.hero.client.service;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
+import com.townscript.hero.shared.merchant.MerchantAccountDetailsDTO;
 import com.townscript.hero.shared.merchant.MerchantDataDTO;
 
 /**
@@ -11,7 +12,9 @@ import com.townscript.hero.shared.merchant.MerchantDataDTO;
 public interface GreetingService extends RemoteService {
 	String greetServer(String name) throws IllegalArgumentException;
 	
-//	int addMerchant(MerchantDataDTO merchantDataDTO);
+	int addMerchant(MerchantDataDTO merchantDataDTO);
+	
+	int addMerchantBankDetails(MerchantAccountDetailsDTO accountDetailsDTO);
 	
 	
 }

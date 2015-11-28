@@ -3,6 +3,8 @@ package com.townscript.hero.server;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.townscript.hero.client.service.GreetingService;
 import com.townscript.hero.shared.FieldVerifier;
+import com.townscript.hero.shared.merchant.MerchantAccountDetailsDTO;
+import com.townscript.hero.shared.merchant.MerchantDataDTO;
 
 /**
  * The server side implementation of the RPC service.
@@ -30,19 +32,25 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		return "Hello, " + input + "!<br><br>I am running " + serverInfo
 				+ ".<br><br>It looks like you are using:<br>" + userAgent;
 	}
-
-	/**
-	 * Escape an html string. Escaping data received from the client helps to
-	 * prevent cross-site script vulnerabilities.
-	 * 
-	 * @param html the html string to escape
-	 * @return the escaped string
-	 */
+	
 	private String escapeHtml(String html) {
 		if (html == null) {
 			return null;
 		}
 		return html.replaceAll("&", "&amp;").replaceAll("<", "&lt;")
 				.replaceAll(">", "&gt;");
+	}
+
+	@Override
+	public int addMerchant(MerchantDataDTO merchantDataDTO) {
+		
+		
+		return 0;
+	}
+
+	@Override
+	public int addMerchantBankDetails(
+			MerchantAccountDetailsDTO accountDetailsDTO) {
+		return 0;
 	}
 }

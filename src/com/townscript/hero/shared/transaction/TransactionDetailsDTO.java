@@ -24,7 +24,7 @@ public class TransactionDetailsDTO implements IsSerializable{
 	
 	private Date transactionTimestamp;
 	
-	private String transactionSource ; 
+	private String transactionSource;
 	
 	public int getTxnId() {
 		return txnId;
