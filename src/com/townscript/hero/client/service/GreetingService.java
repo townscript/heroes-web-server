@@ -34,7 +34,7 @@ public interface GreetingService extends RemoteService {
 	
 	void deleteApplicationData(int applicationId) throws UiValidationError;
 	
-	List<ApplicationDataDTO> loadAllApplicationDataDTOs(int merchantId) throws UiValidationError;
+	List<ApplicationDataDTO> loadAllApplicationDataDTOs() throws UiValidationError;
 	
 	List<TransactionDetailsDTO> loadAllTransactionDetailsDTOs(int merchantId) throws UiValidationError;
 	

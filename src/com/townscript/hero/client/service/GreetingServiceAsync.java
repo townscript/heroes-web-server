@@ -31,7 +31,8 @@ public interface GreetingServiceAsync {
 	
 	void deleteApplicationData(int applicationId,AsyncCallback<Void> callback);
 	
-	void loadAllApplicationDataDTOs(int merchantId,AsyncCallback<List<ApplicationDataDTO>> callback);
+	void loadAllApplicationDataDTOs(
+			AsyncCallback<List<ApplicationDataDTO>> callback);
 	
 	void loadAllTransactionDetailsDTOs(int merchantId,AsyncCallback<List<TransactionDetailsDTO>> callback);
 	

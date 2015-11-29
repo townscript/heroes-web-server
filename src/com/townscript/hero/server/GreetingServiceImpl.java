@@ -176,6 +176,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public int addApplicationData(ApplicationDataDTO applicationDataDTO) throws UiValidationError {
+		
+		String merchantId = (String) getThreadLocalRequest().getSession().getAttribute("merchantId");
+		
+		applicationDataDTO.setMerchantId(Integer.parseInt(merchantId));
+		
 		String jsonString = new Gson().toJson(applicationDataDTO);
 		
 		String data = null;
@@ -278,7 +283,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public List<ApplicationDataDTO> loadAllApplicationDataDTOs(int merchantId) throws UiValidationError {
+	public List<ApplicationDataDTO> loadAllApplicationDataDTOs() throws UiValidationError {
+		
+		String merchantId = (String) getThreadLocalRequest().getSession().getAttribute("merchantId");
 		
 		String webPage = APPLICATION_LOAD_ALL_URL + "?merchantid=" + String.valueOf(merchantId) ;
 		
