@@ -41,6 +41,7 @@ public class DashboardPage extends Composite {
 	// Create a data provider.
     private ListDataProvider<ApplicationDataDTO> dataProvider = new ListDataProvider<ApplicationDataDTO>();
     
+	@SuppressWarnings("unchecked")
 	public DashboardPage() {
 		initWidget(uiBinder.createAndBindUi(this));
 
@@ -84,8 +85,32 @@ public class DashboardPage extends Composite {
 				
 				clickElement(temp.getElement());
 				ModalFactory.getInstance().clearBody();
-				ApplicationLayout layout = new ApplicationLayout(object);
+				final ApplicationLayout layout = new ApplicationLayout(object);
+				
 				ModalFactory.getInstance().addBody(layout);
+				ModalFactory.getInstance().setCallBack(new OkayCallback() {
+					
+					@Override
+					public void onOkay() {
+						GreetingServiceAsync service = (GreetingServiceAsync)GWT.create(GreetingService.class);
+					    ServiceDefTarget serviceDef = (ServiceDefTarget) service;
+					    serviceDef.setServiceEntryPoint(GWT.getModuleBaseURL()
+					    		+ "greet");
+					    service.updateApplicationData(layout.getApplicationForm(), new AsyncCallback<Integer>() {
+							
+							@Override
+							public void onSuccess(Integer result) {
+								
+							}
+							
+							@Override
+							public void onFailure(Throwable caught) {
+								Window.alert(caught.getMessage());
+							}
+						});
+					    
+					}
+				});
 //				temp.removeFromParent();
 			}
 		});	    
