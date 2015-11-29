@@ -26,6 +26,12 @@ public class TransactionDetailsDTO implements IsSerializable{
 	
 	private String transactionSource ; 
 	
+	private String phoneNumber;
+	
+	private int paymentSolutionId;
+
+	private int merchantId;
+	
 	public int getTxnId() {
 		return txnId;
 	}
@@ -104,6 +110,30 @@ public class TransactionDetailsDTO implements IsSerializable{
 
 	public void setTransactionSource(String transactionSource) {
 		this.transactionSource = transactionSource;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public int getPaymentSolutionId() {
+		return paymentSolutionId;
+	}
+
+	public void setPaymentSolutionId(int paymentSolutionId) {
+		this.paymentSolutionId = paymentSolutionId;
+	}
+
+	public int getMerchantId() {
+		return merchantId;
+	}
+
+	public void setMerchantId(int merchantId) {
+		this.merchantId = merchantId;
 	}
 	
 	

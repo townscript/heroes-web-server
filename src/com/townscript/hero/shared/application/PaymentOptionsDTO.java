@@ -1,7 +1,7 @@
-package com.townscript.hero.shared.paymentsolution;
+package com.townscript.hero.shared.application;
 
 
-public enum PaymentSolution {
+public enum PaymentOptionsDTO {
 
 	PAYUMONEY{
 
@@ -16,7 +16,7 @@ public enum PaymentSolution {
 		}
 		
 	},
-	PAYTM{
+	CITRUSPAY{
 
 		@Override
 		public Integer getIndex() {
@@ -25,7 +25,19 @@ public enum PaymentSolution {
 
 		@Override
 		public String getPaymentSolutionSource() {
-			return "PAYTM";
+			return "CITRUSPAY";
+		}
+	},
+	CCDBCARD{
+
+		@Override
+		public Integer getIndex() {
+			return 2;
+		}
+
+		@Override
+		public String getPaymentSolutionSource() {
+			return "CCDBCARD";
 		}
 	};
 	
@@ -35,11 +47,11 @@ public enum PaymentSolution {
 	public abstract String getPaymentSolutionSource();
 
 
-	public static PaymentSolution getPaymentSolutionSource(Integer index) {
+	public static PaymentOptionsDTO getPaymentSolutionSource(Integer index) {
 		
-		PaymentSolution paymentSolution = null;
+		PaymentOptionsDTO paymentSolution = null;
 		
-		for(PaymentSolution type : PaymentSolution.values()) {
+		for(PaymentOptionsDTO type : PaymentOptionsDTO.values()) {
 			 if(type.getIndex()==index){
 				 paymentSolution = type;
                  break;

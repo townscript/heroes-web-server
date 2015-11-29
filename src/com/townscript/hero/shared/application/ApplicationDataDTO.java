@@ -1,10 +1,10 @@
 package com.townscript.hero.shared.application;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
-
-public class ApplicationDataDTO implements IsSerializable {
+public class ApplicationDataDTO implements IsSerializable{
 
 	private int appId;
 	
@@ -17,8 +17,8 @@ public class ApplicationDataDTO implements IsSerializable {
 	private String successUrl;
 	
 	private String failureUrl;
-	
-	private List<PaymentGatewayMapDTO> paymentGatewayMaps;
+
+	private List<PaymentGatewayMapDTO> paymentGatewayMaps = new ArrayList<PaymentGatewayMapDTO>();
 
 	public int getAppId() {
 		return appId;
