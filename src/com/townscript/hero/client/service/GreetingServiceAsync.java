@@ -41,4 +41,6 @@ public interface GreetingServiceAsync {
 	void loadBankDetails(int merchantId,AsyncCallback<List<MerchantAccountDetailsDTO>> callback);
 	
 	void isMerchantExist(String emailId,AsyncCallback<Boolean> callback);
+	
+	void setMerchantInSession(MerchantDataDTO merchantDataDTO,AsyncCallback<Void> callback);
 }

@@ -44,5 +44,5 @@ public interface GreetingService extends RemoteService {
 	
 	boolean isMerchantExist(String emailId) throws UiValidationError;
 	
-	
+	void setMerchantInSession(MerchantDataDTO merchantDataDTO) throws UiValidationError;
 }

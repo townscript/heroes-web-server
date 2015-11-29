@@ -5,6 +5,9 @@ import java.lang.reflect.Type;
 import java.net.URLEncoder;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 
 import com.google.gson.Gson;
@@ -99,6 +102,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	public MerchantDataDTO loadMerchantDataDTO(String email)
 			throws UiValidationError {
 		
+		
 		String webPage = MERCHANT_LOAD_URL + "?emailid=" + email ;
 		MerchantDataDTO merchantDataDTO ;
 		JSONObject jsonObject = (JSONObject) TestHttpUtility.getHttpGetResponse(serverBaseUrl,
@@ -176,7 +180,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public int addApplicationData(ApplicationDataDTO applicationDataDTO) throws UiValidationError {
-		
+
 		String merchantId = (String) getThreadLocalRequest().getSession().getAttribute("merchantId");
 		
 		applicationDataDTO.setMerchantId(Integer.parseInt(merchantId));
@@ -208,6 +212,8 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public int updateApplicationData(ApplicationDataDTO applicationDataDTO) throws UiValidationError {
 		
+		int merchantId =  Integer.parseInt(getThreadLocalRequest().getSession().getAttribute("merchantId").toString()); 
+		applicationDataDTO.setMerchantId(merchantId);
 		String jsonString = new Gson().toJson(applicationDataDTO);
 		
 		String data = null;
@@ -287,7 +293,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		
 		String merchantId = (String) getThreadLocalRequest().getSession().getAttribute("merchantId");
 		
-		String webPage = APPLICATION_LOAD_ALL_URL + "?merchantid=" + String.valueOf(merchantId) ;
+		int id =  Integer.parseInt(getThreadLocalRequest().getSession().getAttribute("merchantId").toString()); 
+		
+		String webPage = APPLICATION_LOAD_ALL_URL + "?merchantid=" + String.valueOf(id) ;
 		
 		List<ApplicationDataDTO> applicationDataDTO ;
 		JSONObject jsonObject = (JSONObject) TestHttpUtility.getHttpGetResponse(serverBaseUrl,
@@ -313,7 +321,10 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public List<TransactionDetailsDTO> loadAllTransactionDetailsDTOs(
 			int merchantId) throws UiValidationError {
-		String webPage = TRANSACTION_LOAD_ALL_URL + "?merchantid=" + String.valueOf(merchantId) ;
+		
+		int id =  Integer.parseInt(getThreadLocalRequest().getSession().getAttribute("merchantId").toString()); 
+		
+		String webPage = TRANSACTION_LOAD_ALL_URL + "?merchantid=" + String.valueOf(id) ;
 		
 		List<TransactionDetailsDTO> transactionDetailsDTOs ;
 		JSONObject jsonObject = (JSONObject) TestHttpUtility.getHttpGetResponse(serverBaseUrl,
@@ -340,6 +351,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public MerchantAccountDetailsDTO loadMerchantAccountDetailsDTO(
 			int accountId) throws UiValidationError {
+		
 		
 		String webPage = MERCHANT_LOAD_ACCOUNT_URL + "?accountid=" + String.valueOf(accountId) ;
 		
@@ -368,7 +380,9 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public List<MerchantAccountDetailsDTO> loadBankDetails(int merchantId) throws UiValidationError {
 		
-		String webPage = MERCHANT_LOAD_ALL_ACCOUNT_URL + "?merchantid=" + String.valueOf(merchantId) ;
+		int id =  Integer.parseInt(getThreadLocalRequest().getSession().getAttribute("merchantId").toString()); 
+		
+		String webPage = MERCHANT_LOAD_ALL_ACCOUNT_URL + "?merchantid=" + String.valueOf(id) ;
 		
 		List<MerchantAccountDetailsDTO> merchantAccountDetailsDTOs ;
 		JSONObject jsonObject = (JSONObject) TestHttpUtility.getHttpGetResponse(serverBaseUrl,
@@ -394,7 +408,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public boolean isMerchantExist(String emailId) throws UiValidationError {
 		
-		String webPage = MERCHANT_IS_EXIST_URL + "?isexist=" + emailId ;
+		String webPage = MERCHANT_IS_EXIST_URL + "?emailid=" + emailId ;
 		
 		boolean isExist = false ;
 		JSONObject jsonObject = (JSONObject) TestHttpUtility.getHttpGetResponse(serverBaseUrl,
@@ -417,5 +431,19 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		}
 	}
 
+	@Override
+	public void setMerchantInSession(MerchantDataDTO merchantDataDTO)
+			throws UiValidationError {
+		setMerchantSession(merchantDataDTO);
+	}
+
+	private void setMerchantSession(MerchantDataDTO merchant) {
+		HttpServletRequest request = this.getThreadLocalRequest();
+		HttpSession session = request.getSession(true);
+
+		session.setAttribute("user", merchant.getFirstName());
+		session.setAttribute("merchantId", merchant.getMerchantId());
+		session.setAttribute("email", merchant.getEmailId());
+	}
 	
 }
