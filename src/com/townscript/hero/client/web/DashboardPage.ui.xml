@@ -8,7 +8,10 @@
 	</ui:style>
 	<b:Container styleName="container-fluid">
 		<b:Row>
-			<b:Column size="MD_8" offset="MD_2">
+			<b:Column size="MD_8 SM_10" offset="MD_2 SM_1">
+				<b:Div styleName="form-group text-right">
+					<b:Button ui:field="addNew" target="#myModal" toggle="MODAL" type="PRIMARY" size="LARGE">Add New APP</b:Button>
+				</b:Div>
 				<c:CellTable ui:field="table" width="100%" height="100%"
 				 styleName="table table-striped table-hover table-condensed table-bordered"/>
 			</b:Column>

@@ -6,6 +6,7 @@ import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.townscript.hero.client.web.LoginPage;
+import com.townscript.hero.client.web.ModalFactory;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -30,6 +31,8 @@ public class DashboardMerchant implements EntryPoint {
 				} else {
 					History.fireCurrentHistoryState();
 				} 
+				
+				RootPanel.get().add(ModalFactory.getInstance());
 			}
 			
 			@Override
