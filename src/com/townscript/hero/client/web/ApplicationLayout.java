@@ -3,12 +3,12 @@ package com.townscript.hero.client.web;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.gwtbootstrap3.client.ui.CheckBoxButton;
 import org.gwtbootstrap3.client.ui.TextBox;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.townscript.hero.shared.application.ApplicationDataDTO;
@@ -25,7 +25,8 @@ public class ApplicationLayout extends Composite {
 	}
 	
 	@UiField TextBox appName, successUrl, failureUrl;
-	@UiField CheckBoxButton isCitrus, isPayUMoney, isNormal;
+//	@UiField CheckBoxButton isCitrus, isPayUMoney, isNormal;
+	@UiField CheckBox isCitrus, isPayUMoney, isNormal;
 
 	public ApplicationLayout() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -38,24 +39,28 @@ public class ApplicationLayout extends Composite {
 		app.setSuccessUrl(successUrl.getText());
 		
 		List<PaymentGatewayMapDTO> map = new ArrayList<PaymentGatewayMapDTO>();
-		if (isCitrus.isActive()) {
+		if (isCitrus.isChecked()) {
 			PaymentGatewayMapDTO dto = new PaymentGatewayMapDTO();
 			dto.setPaymentOption(PaymentOptions.CITRUSPAY.getPaymentSolutionSource());
 			map.add(dto);
 		}
 		
-		if (isPayUMoney.isActive()) {
+		if (isPayUMoney.isChecked()) {
 			PaymentGatewayMapDTO dto = new PaymentGatewayMapDTO();
 			dto.setPaymentOption(PaymentOptions.PAYUMONEY.getPaymentSolutionSource());
 			map.add(dto);
 		}
 		
-		if (isNormal.isActive()) {
+		if (isNormal.isChecked()) {
 			PaymentGatewayMapDTO dto = new PaymentGatewayMapDTO();
 			dto.setPaymentOption(PaymentOptions.CCDBCARD.getPaymentSolutionSource());
 			map.add(dto);
 		}
-		
+		if (map.isEmpty()) {
+			PaymentGatewayMapDTO dto = new PaymentGatewayMapDTO();
+			dto.setPaymentOption(PaymentOptions.CCDBCARD.getPaymentSolutionSource());
+			map.add(dto);
+		}
 		app.setPaymentGatewayMaps(map);
 		
 		return app;
@@ -70,13 +75,13 @@ public class ApplicationLayout extends Composite {
 		
 		for (PaymentGatewayMapDTO map : dto.getPaymentGatewayMaps()) {
 			if(map.getPaymentOption().equalsIgnoreCase(PaymentOptions.CITRUSPAY.getPaymentSolutionSource())){
-				isCitrus.setActive(true);
+				isCitrus.setChecked(true);
 			}
 			if (map.getPaymentOption().equalsIgnoreCase(PaymentOptions.PAYUMONEY.getPaymentSolutionSource())) {
-				isPayUMoney.setActive(true);
+				isPayUMoney.setChecked(true);
 			}
 			if (map.getPaymentOption().equalsIgnoreCase(PaymentOptions.CCDBCARD.getPaymentSolutionSource())) {
-				isNormal.setActive(true);
+				isNormal.setChecked(true);
 			}
 		}
 		

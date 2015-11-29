@@ -15,6 +15,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.townscript.hero.client.service.GreetingService;
 import com.townscript.hero.shared.UiValidationError;
+import com.townscript.hero.shared.ValidateSessionError;
 import com.townscript.hero.shared.application.ApplicationDataDTO;
 import com.townscript.hero.shared.merchant.MerchantAccountDetailsDTO;
 import com.townscript.hero.shared.merchant.MerchantDataDTO;
@@ -45,7 +46,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	private static final String serverBaseUrl = ServerFactory.getApiServerAddress();
 	
 	@Override
-	public int addMerchant(MerchantDataDTO merchantDataDTO) throws UiValidationError {
+	public int addMerchant(MerchantDataDTO merchantDataDTO) throws UiValidationError,ValidateSessionError {
 		
 		String jsonString = new Gson().toJson(merchantDataDTO);
 		
@@ -72,7 +73,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public int addMerchantBankDetails(
-			MerchantAccountDetailsDTO accountDetailsDTO) throws UiValidationError {
+			MerchantAccountDetailsDTO accountDetailsDTO) throws UiValidationError,ValidateSessionError {
+		if(validateSession()==null)
+		{
+			throw new ValidateSessionError("you are not authorized to do any operation,please Login ");
+		}
 		String jsonString = new Gson().toJson(accountDetailsDTO);
 		
 		String data = null;
@@ -100,7 +105,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public MerchantDataDTO loadMerchantDataDTO(String email)
-			throws UiValidationError {
+			throws UiValidationError,ValidateSessionError {
 		
 		
 		String webPage = MERCHANT_LOAD_URL + "?emailid=" + email ;
@@ -128,7 +133,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public MerchantDataDTO loadMerchantDataDTO(int merchantId)
-			throws UiValidationError {
+			throws UiValidationError,ValidateSessionError {
 		String webPage = MERCHANT_LOAD_BY_ID_URL + "?id=" + String.valueOf(merchantId) ;
 		MerchantDataDTO merchantDataDTO ;
 		JSONObject jsonObject = (JSONObject) TestHttpUtility.getHttpGetResponse(serverBaseUrl,
@@ -153,7 +158,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	
 	@Override
 	public int updateMerchantBankDetails(
-			MerchantAccountDetailsDTO merchantAccountDetailsDTO) throws UiValidationError {
+			MerchantAccountDetailsDTO merchantAccountDetailsDTO) throws UiValidationError,ValidateSessionError {
+		if(validateSession()==null)
+		{
+			throw new ValidateSessionError("you are not authorized to do any operation,please Login ");
+		}
 		String jsonString = new Gson().toJson(merchantAccountDetailsDTO);
 		
 		String data = null;
@@ -179,8 +188,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public int addApplicationData(ApplicationDataDTO applicationDataDTO) throws UiValidationError {
-
+	public int addApplicationData(ApplicationDataDTO applicationDataDTO) throws UiValidationError,ValidateSessionError {
+		if(validateSession()==null)
+		{
+			throw new ValidateSessionError("you are not authorized to do any operation,please Login ");
+		}
 		String merchantId = (String) getThreadLocalRequest().getSession().getAttribute("merchantId");
 		
 		applicationDataDTO.setMerchantId(Integer.parseInt(merchantId));
@@ -210,8 +222,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public int updateApplicationData(ApplicationDataDTO applicationDataDTO) throws UiValidationError {
-		
+	public int updateApplicationData(ApplicationDataDTO applicationDataDTO) throws UiValidationError,ValidateSessionError {
+		if(validateSession()==null)
+		{
+			throw new ValidateSessionError("you are not authorized to do any operation,please Login ");
+		}
 		int merchantId =  Integer.parseInt(getThreadLocalRequest().getSession().getAttribute("merchantId").toString()); 
 		applicationDataDTO.setMerchantId(merchantId);
 		String jsonString = new Gson().toJson(applicationDataDTO);
@@ -239,8 +254,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public ApplicationDataDTO loadApplicationDataDTO(int applicationId) throws UiValidationError {
-		
+	public ApplicationDataDTO loadApplicationDataDTO(int applicationId) throws UiValidationError ,ValidateSessionError{
+		if(validateSession()==null)
+		{
+			throw new ValidateSessionError("you are not authorized to do any operation,please Login ");
+		}
 		String webPage = APPLICATION_LOAD_URL + "?appid=" + String.valueOf(applicationId) ;
 		
 		ApplicationDataDTO applicationDataDTO ;
@@ -265,8 +283,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public void deleteApplicationData(int applicationId) throws UiValidationError {
-		
+	public void deleteApplicationData(int applicationId) throws UiValidationError,ValidateSessionError {
+		if(validateSession()==null)
+		{
+			throw new ValidateSessionError("you are not authorized to do any operation,please Login ");
+		}
 		String stringApplicationId = new Integer(applicationId)
 		.toString();
 		String data = null;
@@ -289,9 +310,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public List<ApplicationDataDTO> loadAllApplicationDataDTOs() throws UiValidationError {
-		
-		String merchantId = (String) getThreadLocalRequest().getSession().getAttribute("merchantId");
+	public List<ApplicationDataDTO> loadAllApplicationDataDTOs() throws UiValidationError,ValidateSessionError {
+		if(validateSession()==null)
+		{
+			throw new ValidateSessionError("you are not authorized to do any operation,please Login ");
+		}
 		
 		int id =  Integer.parseInt(getThreadLocalRequest().getSession().getAttribute("merchantId").toString()); 
 		
@@ -320,8 +343,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public List<TransactionDetailsDTO> loadAllTransactionDetailsDTOs(
-			int merchantId) throws UiValidationError {
-		
+			int merchantId) throws UiValidationError,ValidateSessionError {
+		if(validateSession()==null)
+		{
+			throw new ValidateSessionError("you are not authorized to do any operation,please Login ");
+		}
 		int id =  Integer.parseInt(getThreadLocalRequest().getSession().getAttribute("merchantId").toString()); 
 		
 		String webPage = TRANSACTION_LOAD_ALL_URL + "?merchantid=" + String.valueOf(id) ;
@@ -350,7 +376,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public MerchantAccountDetailsDTO loadMerchantAccountDetailsDTO(
-			int accountId) throws UiValidationError {
+			int accountId) throws UiValidationError,ValidateSessionError {
 		
 		
 		String webPage = MERCHANT_LOAD_ACCOUNT_URL + "?accountid=" + String.valueOf(accountId) ;
@@ -378,8 +404,11 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public List<MerchantAccountDetailsDTO> loadBankDetails(int merchantId) throws UiValidationError {
-		
+	public List<MerchantAccountDetailsDTO> loadBankDetails(int merchantId) throws UiValidationError,ValidateSessionError {
+		if(validateSession()==null)
+		{
+			throw new ValidateSessionError("you are not authorized to do any operation,please Login ");
+		}
 		int id =  Integer.parseInt(getThreadLocalRequest().getSession().getAttribute("merchantId").toString()); 
 		
 		String webPage = MERCHANT_LOAD_ALL_ACCOUNT_URL + "?merchantid=" + String.valueOf(id) ;
@@ -406,7 +435,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 	}
 
 	@Override
-	public boolean isMerchantExist(String emailId) throws UiValidationError {
+	public boolean isMerchantExist(String emailId) throws UiValidationError,ValidateSessionError {
 		
 		String webPage = MERCHANT_IS_EXIST_URL + "?emailid=" + emailId ;
 		
@@ -433,7 +462,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public void setMerchantInSession(MerchantDataDTO merchantDataDTO)
-			throws UiValidationError {
+			throws UiValidationError,ValidateSessionError {
 		setMerchantSession(merchantDataDTO);
 	}
 
@@ -442,8 +471,16 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 		HttpSession session = request.getSession(true);
 
 		session.setAttribute("user", merchant.getFirstName());
-		session.setAttribute("merchantId", merchant.getMerchantId());
+		session.setAttribute("merchantId", String.valueOf(merchant.getMerchantId()));
 		session.setAttribute("email", merchant.getEmailId());
 	}
+	
+	public String validateSession() {
+
+		String userName = (String) getThreadLocalRequest().getSession().getAttribute("user");
+		return userName;
+		
+	}
+
 	
 }

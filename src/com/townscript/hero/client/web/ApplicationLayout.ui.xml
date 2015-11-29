@@ -32,9 +32,13 @@
 						<b:FormGroup>
 							<b:FormLabel for="paymentOptions">Payment Options</b:FormLabel>
 							<b:Div>
-								<b:CheckBoxButton styleName="form-control" ui:field="isCitrus" text="Citrus"></b:CheckBoxButton>
+								<g:CheckBox ui:field="isCitrus" styleName="payment-option" text="Citrus"></g:CheckBox>
+								<g:CheckBox ui:field="isPayUMoney" styleName="payment-option" text="PayUMoney"></g:CheckBox>
+								<g:CheckBox ui:field="isNormal" styleName="payment-option" text="Credit/Debit Card"></g:CheckBox>
+								
+								<!-- <b:CheckBoxButton styleName="form-control" ui:field="isCitrus" text="Citrus"></b:CheckBoxButton>
 								<b:CheckBoxButton styleName="form-control" ui:field="isPayUMoney" text="PayUMoney"></b:CheckBoxButton>
-								<b:CheckBoxButton styleName="form-control" ui:field="isNormal" text="Credit/Debit Card"></b:CheckBoxButton>
+								<b:CheckBoxButton styleName="form-control" ui:field="isNormal" text="Credit/Debit Card"></b:CheckBoxButton> -->
 							</b:Div>							
 						</b:FormGroup>
 					</b:FieldSet>
